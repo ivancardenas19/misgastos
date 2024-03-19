@@ -43,7 +43,7 @@ calcularInteresCuotas();
 ///////////////////////////////////////////////////////////////////////////
 
 let gastos = {
-    lista: [], // Array para almacenar los gastos
+    lista: [], // Array que guarda los gastos
 
     // Función para agregar un nuevo gasto al array
     agregarGasto: function(tipo, valor, fecha, vencimiento) {
@@ -57,7 +57,7 @@ let gastos = {
 
         this.lista.push({
             tipoGasto: tipo,
-            valorGasto: parseFloat(valor.toFixed(2)), // Redondear el valor a 2 decimales
+            valorGasto: parseFloat(valor.toFixed(2)), 
             fechaGasto: fechaCompra,
             vencimientos: fechaVencimiento
         });
@@ -68,7 +68,7 @@ let gastos = {
         // El formato esperado es dd-mm-aa, por lo tanto, separamos la fecha por "-"
         let partesFecha = fechaString.split("-");
         
-        // Verificamos que se hayan ingresado 3 partes y que cada parte sea un número válido
+        // Validaque haya 3 partes y que cada parte sea un número válido
         if (partesFecha.length !== 3 || partesFecha.some(part => isNaN(parseInt(part)))) {
             return false;
         }
@@ -86,7 +86,7 @@ let gastos = {
         return true;
     },
 
-    // Función para solicitar al usuario que ingrese una fecha válida en el formato especificado
+    // Valida Fecha
     ingresarFechaValida: function(mensaje) {
         let fechaIngresada;
         do {
@@ -96,13 +96,13 @@ let gastos = {
         return fechaIngresada;
     },
 
-    // Función para calcular la suma total de los gastos
+    //suma total de los gastos
     calcularTotal: function() {
         let total = 0;
         for (let gasto of this.lista) {
             total += gasto.valorGasto;
         }
-        return total.toFixed(2); // Redondear el total a 2 decimales
+        return total.toFixed(2); // s
     }
 };
 
@@ -111,10 +111,10 @@ function ingresarGasto() {
     let tipo = prompt("Ingrese el tipo de gasto:");
     let valor = parseFloat(prompt("Ingrese el valor del gasto:"));
     
-    // Solicitar al usuario que ingrese la fecha del gasto
+    // ingresa la fecha del gasto
     let fechaGasto = gastos.ingresarFechaValida("Ingrese la fecha del gasto en formato dd-mm-aa:");
     
-    // Solicitar al usuario que ingrese la fecha de vencimiento
+    // ingrese la fecha de vencimiento
     let vencimiento;
     do {
         vencimiento = gastos.ingresarFechaValida("Ingrese la fecha de vencimiento en formato dd-mm-aa:");
@@ -128,10 +128,10 @@ function ingresarGasto() {
     }
 }
 
-// Iniciar el proceso de ingreso de gastos
+// ingreso de gastos
 ingresarGasto();
 
-// Calcular el total de los gastos y mostrarlos por consola
+
 console.log("Lista de gastos:");
 for (let gasto of gastos.lista) {
     console.log(gasto);
